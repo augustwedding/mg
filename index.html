@@ -501,6 +501,53 @@
       box-shadow: 0 14px 30px rgba(63, 48, 43, .10);
     }
 
+    .audio-toggle {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 101;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(183, 150, 90, .42);
+      border-radius: 999px;
+      background: rgba(255, 253, 249, .97);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 28px rgba(63, 48, 43, .16);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .audio-toggle:hover {
+      transform: translateY(-1px);
+      background: #fff;
+    }
+
+    .audio-toggle svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--ink);
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    .audio-toggle .audio-on {
+      display: none;
+    }
+
+    .audio-toggle.is-on .audio-on {
+      display: block;
+    }
+
+    .audio-toggle.is-on .audio-off {
+      display: none;
+    }
+
     .lang-switcher button {
       border: 0;
       padding: 8px 14px;
@@ -1367,6 +1414,11 @@
     }
 
     @media (max-width: 850px) {
+      .audio-toggle {
+        top: 14px;
+        left: 14px;
+      }
+
       .lang-switcher {
         top: 14px;
         right: 14px;
@@ -1461,6 +1513,12 @@
         max-width: calc(100% - 16px);
       }
 
+      .audio-toggle {
+        top: auto;
+        left: 14px;
+        bottom: 14px;
+      }
+
       .lang-switcher button {
         padding: 7px 12px;
       }
@@ -1491,6 +1549,23 @@
 </head>
 
 <body>
+  <button class="audio-toggle" id="audioToggle" type="button" aria-label="Turn sound off" title="Turn sound off" aria-pressed="true">
+    <svg class="audio-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <polygon points="11 6 8 9 5 9 5 15 8 15 11 18 11 6"></polygon>
+      <line x1="15" y1="9" x2="21" y2="15"></line>
+      <line x1="21" y1="9" x2="15" y2="15"></line>
+    </svg>
+    <svg class="audio-on" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <polygon points="11 6 8 9 5 9 5 15 8 15 11 18 11 6"></polygon>
+      <path d="M14 9.5c1.4 1.4 1.4 3.6 0 5"></path>
+      <path d="M16.7 7.3c2.8 2.8 2.8 7.3 0 10.1"></path>
+    </svg>
+  </button>
+
+  <audio id="bgAudio" loop preload="none">
+    <source src="./assets/media.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="lang-switcher" role="group" aria-label="Language selector">
     <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
     <button type="button" data-lang-btn="ka" aria-pressed="false">KA</button>
@@ -1919,9 +1994,78 @@
       });
     }
 
+    const bgAudio = document.getElementById('bgAudio');
+    const audioToggle = document.getElementById('audioToggle');
+    let audioEnabled = true;
+    let audioStarted = false;
+
+    function updateAudioToggleUI() {
+      if (!audioToggle) return;
+      const label = audioEnabled ? 'Turn sound off' : 'Turn sound on';
+      audioToggle.classList.toggle('is-on', audioEnabled);
+      audioToggle.setAttribute('aria-label', label);
+      audioToggle.setAttribute('title', label);
+      audioToggle.setAttribute('aria-pressed', String(audioEnabled));
+    }
+
+    function enableBackgroundAudio() {
+      if (!bgAudio) return;
+      bgAudio.muted = false;
+      bgAudio.volume = 0.9;
+      if (!audioStarted) {
+        bgAudio.load();
+        audioStarted = true;
+      }
+
+      const playPromise = bgAudio.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+          .then(() => {
+            audioEnabled = true;
+            updateAudioToggleUI();
+          })
+          .catch(() => {
+            audioEnabled = false;
+            updateAudioToggleUI();
+          });
+        return;
+      }
+
+      audioEnabled = true;
+      updateAudioToggleUI();
+    }
+
+    function disableBackgroundAudio() {
+      if (!bgAudio) return;
+      bgAudio.pause();
+      audioEnabled = false;
+      updateAudioToggleUI();
+    }
+
+    if (audioToggle) {
+      audioToggle.addEventListener('click', () => {
+        if (audioEnabled) {
+          disableBackgroundAudio();
+        } else {
+          enableBackgroundAudio();
+        }
+      });
+    }
+
+    if (bgAudio) {
+      bgAudio.addEventListener('canplay', () => {
+        if (document.body.classList.contains('opened') && !audioEnabled) {
+          enableBackgroundAudio();
+        }
+      });
+    }
+
+    updateAudioToggleUI();
+
     const openButton = document.getElementById('openInvite');
     openButton.addEventListener('click', () => {
       document.body.classList.add('opened');
+      enableBackgroundAudio();
       setTimeout(() => document.getElementById('home').scrollIntoView(), 400);
     });
 

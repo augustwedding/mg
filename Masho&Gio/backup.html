@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giorgi & Masho Wedding Invitation</title>
+  <meta name="description" content="An elegant floral digital wedding invitation template with RSVP, schedule, countdown and venue details." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fff8ef;
+      --rose: #f2c9c9;
+      --rose-dark: #ba7373;
+      --sage-soft: #eef1e7;
+      --ink: #3f302b;
+      --muted: #806f68;
+      --white: #fffdf9;
+      --shadow: 0 24px 70px rgba(63, 48, 43, 0.12);
+      --portrait-caption: "Blooming together";
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Source Sans 3", sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    @font-face {
+      font-family: "DM Constitution";
+      src: url("./assets/fonts/DM-CONSTITUTION.ttf") format("truetype");
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html[lang="ka"] *,
+    html[lang="ka"] *::before,
+    html[lang="ka"] *::after {
+      font-family: "DM Constitution" !important;
+      letter-spacing: 0 !important;
+    }
+
+    body.opened .gate {
+      transform: translateY(-110%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .gate {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(242, 201, 201, 0.8), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(238, 241, 231, 0.9), transparent 28%),
+        linear-gradient(145deg, #fff8ef, #f7e6dc);
+      transition: 1s cubic-bezier(.77,0,.18,1);
+    }
+
+    .gate-card {
+      width: min(520px, 100%);
+      min-height: 650px;
+      border-radius: 42px;
+      background:
+        linear-gradient(170deg, rgba(255, 255, 255, 0.95), rgba(255, 252, 248, 0.9));
+      border: 1px solid rgba(183, 150, 90, 0.45);
+      box-shadow: var(--shadow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 48px 28px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      animation: rise 1.2s ease both;
+      container-type: inline-size;
+    }
+
+    .gate-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gate-card::before,
+    .gate-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1.5px solid rgba(183, 150, 90, .55);
+      border-radius: 46% 54% 42% 58%;
+      opacity: .42;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .gate-card::before {
+      left: -164px;
+      top: -134px;
+    }
+
+    .gate-card::after {
+      right: -176px;
+      bottom: -156px;
+      border-radius: 58% 42% 52% 48%;
+    }
+
+    .gate-bouquet {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      z-index: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 12px 22px rgba(63, 48, 43, 0.14));
+      opacity: .98;
+    }
+
+    .gate-bouquet.top-left {
+      top: -14px;
+      left: -20px;
+      transform: rotate(-4deg);
+    }
+
+    .gate-bouquet.bottom-right {
+      right: -26px;
+      bottom: -20px;
+      transform: rotate(176deg) scale(1.04);
+    }
+
+    .gate-bouquet .wash {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      opacity: .6;
+    }
+
+    .gate-bouquet .wash.one {
+      width: 118px;
+      height: 118px;
+      left: 8px;
+      top: 12px;
+      background: radial-gradient(circle at 38% 34%, rgba(255, 244, 247, .85), rgba(245, 212, 220, .22) 72%, transparent 100%);
+    }
+
+    .gate-bouquet .wash.two {
+      width: 128px;
+      height: 128px;
+      left: 86px;
+      top: 66px;
+      background: radial-gradient(circle at 50% 42%, rgba(235, 244, 231, .82), rgba(206, 221, 194, .2) 74%, transparent 100%);
+    }
+
+    .gate-bouquet .stem {
+      position: absolute;
+      width: 128px;
+      height: 80px;
+      border: 2px solid rgba(128, 143, 102, .75);
+      border-color: rgba(128, 143, 102, .75) transparent transparent transparent;
+      border-radius: 50% 50% 0 0;
+      transform-origin: left center;
+      opacity: .75;
+    }
+
+    .gate-bouquet .stem.one {
+      left: 34px;
+      top: 132px;
+      transform: rotate(-27deg);
+    }
+
+    .gate-bouquet .stem.two {
+      left: 74px;
+      top: 142px;
+      transform: rotate(-4deg);
+    }
+
+    .gate-bouquet .leaf {
+      position: absolute;
+      width: 44px;
+      height: 22px;
+      border-radius: 100% 12% 100% 12%;
+      background: linear-gradient(145deg, rgba(196, 214, 170, .95), rgba(127, 151, 94, .95));
+      box-shadow: inset 0 -3px 5px rgba(93, 116, 70, .34);
+    }
+
+    .gate-bouquet .leaf::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      top: 10px;
+      height: 1px;
+      background: rgba(85, 109, 66, .45);
+      transform: rotate(-6deg);
+    }
+
+    .gate-bouquet .leaf.l1 { left: 116px; top: 120px; transform: rotate(18deg); }
+    .gate-bouquet .leaf.l2 { left: 70px; top: 98px; transform: rotate(-32deg) scale(.95); }
+    .gate-bouquet .leaf.l3 { left: 138px; top: 84px; transform: rotate(56deg) scale(.9); }
+    .gate-bouquet .leaf.l4 { left: 26px; top: 148px; transform: rotate(-68deg) scale(.88); }
+
+    .gate-bouquet .blossom {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      filter: saturate(1.04);
+    }
+
+    .gate-bouquet .blossom.big {
+      left: 34px;
+      top: 56px;
+      transform: rotate(9deg);
+    }
+
+    .gate-bouquet .blossom.small {
+      width: 58px;
+      height: 58px;
+      left: 106px;
+      top: 74px;
+      transform: rotate(-12deg);
+    }
+
+    .gate-bouquet .petal {
+      position: absolute;
+      width: 34px;
+      height: 26px;
+      border-radius: 70% 70% 68% 68%;
+      background: linear-gradient(165deg, rgba(255, 245, 247, .96), rgba(242, 194, 206, .92));
+      box-shadow: inset 0 -4px 8px rgba(187, 127, 144, .22);
+      transform-origin: 50% 96%;
+    }
+
+    .gate-bouquet .blossom.small .petal {
+      width: 26px;
+      height: 20px;
+    }
+
+    .gate-bouquet .petal.p1 { left: 20px; top: 0; transform: rotate(0deg); }
+    .gate-bouquet .petal.p2 { left: 38px; top: 13px; transform: rotate(62deg); }
+    .gate-bouquet .petal.p3 { left: 33px; top: 35px; transform: rotate(122deg); }
+    .gate-bouquet .petal.p4 { left: 8px; top: 38px; transform: rotate(184deg); }
+    .gate-bouquet .petal.p5 { left: -6px; top: 17px; transform: rotate(248deg); }
+    .gate-bouquet .petal.p6 { left: 6px; top: 4px; transform: rotate(308deg); }
+
+    .gate-bouquet .core {
+      position: absolute;
+      left: 30px;
+      top: 28px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 32%, rgba(255, 227, 234, .95), rgba(228, 131, 154, .9));
+      box-shadow: inset 0 0 0 2px rgba(255, 241, 244, .52);
+    }
+
+    .gate-bouquet .blossom.small .core {
+      width: 14px;
+      height: 14px;
+      left: 22px;
+      top: 22px;
+    }
+
+    .gate-bouquet .stamen {
+      position: absolute;
+      left: 36px;
+      top: 36px;
+      width: 3px;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(214, 134, 147, .74);
+      transform-origin: 50% 95%;
+    }
+
+    .gate-bouquet .stamen.s1 { transform: rotate(-28deg); }
+    .gate-bouquet .stamen.s2 { transform: rotate(0deg); }
+    .gate-bouquet .stamen.s3 { transform: rotate(24deg); }
+
+    .gate-bouquet .blossom.small .stamen {
+      left: 27px;
+      top: 26px;
+      width: 2px;
+      height: 12px;
+    }
+
+    .gate-bouquet .bud {
+      position: absolute;
+      width: 16px;
+      height: 22px;
+      border-radius: 55% 55% 45% 45%;
+      background: linear-gradient(180deg, rgba(255, 238, 244, .96), rgba(236, 174, 191, .94));
+      box-shadow: inset 0 -2px 5px rgba(174, 110, 127, .24);
+    }
+
+    .gate-bouquet .bud::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      bottom: -7px;
+      height: 8px;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(180deg, rgba(133, 157, 101, .95), rgba(96, 121, 71, .95));
+    }
+
+    .gate-bouquet .bud.b1 { left: 174px; top: 68px; transform: rotate(22deg); }
+    .gate-bouquet .bud.b2 { left: 148px; top: 46px; transform: rotate(-14deg) scale(.9); }
+    .gate-bouquet .bud.b3 { left: 52px; top: 126px; transform: rotate(-38deg) scale(.88); }
+
+    .eyebrow {
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .gate h1,
+    .hero h1 {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(54px, 13vw, 112px);
+      line-height: .86;
+      font-weight: 600;
+      letter-spacing: -2px;
+    }
+
+    .couple-name {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: clamp(8px, 1.6vw, 18px);
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      text-align: center;
+    }
+
+    .gate-date {
+      margin: 22px 0 30px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .gate-couple-name {
+      margin-top: 6px;
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(24px, 8.8cqw, 46px);
+      line-height: 1.03;
+      font-weight: 600;
+      letter-spacing: -0.25px;
+      color: #4a3a33;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(63, 48, 43, 0.08);
+      white-space: nowrap;
+      display: block;
+      max-width: 100%;
+    }
+
+    .gate h1.gate-couple-name {
+      font-size: clamp(50px, 5.8vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -0.05px;
+    }
+
+    .gate-couple-name .and {
+      display: inline-block;
+      margin: 0 4px;
+      opacity: .92;
+    }
+
+    .gate-wedding-note {
+      margin-top: 10px;
+      color: #6f5d56;
+      font-size: clamp(13px, 2.8vw, 16px);
+      font-weight: 600;
+      letter-spacing: .4px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 30px;
+      background: var(--ink);
+      color: white;
+      font-weight: 600;
+      letter-spacing: .3px;
+      cursor: pointer;
+      transition: .25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--rose-dark);
+    }
+
+    .btn.light {
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid rgba(183, 150, 90, .4);
+    }
+
+    .nav {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      z-index: 50;
+      display: flex;
+      gap: 6px;
+      padding: 8px;
+      background: rgba(255, 253, 249, .78);
+      border: 1px solid rgba(183, 150, 90, .28);
+      border-radius: 999px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 35px rgba(63, 48, 43, 0.10);
+    }
+
+    .lang-switcher {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 60;
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(183, 150, 90, .28);
+      background: rgba(255, 253, 249, .85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 30px rgba(63, 48, 43, .10);
+    }
+
+    .lang-switcher button {
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .4px;
+    }
+
+    .lang-switcher button.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      transition: .25s ease;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      background: var(--sage-soft);
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 120px 22px 80px;
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 16%, rgba(242, 201, 201, .58), transparent 26%),
+        radial-gradient(circle at 14% 72%, rgba(135, 147, 111, .22), transparent 28%),
+        linear-gradient(#fff8ef, #fbefe6);
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255, 248, 239, .08), rgba(255, 248, 239, .22) 58%, rgba(63, 48, 43, .44)),
+        linear-gradient(180deg, rgba(25, 18, 15, .42), rgba(25, 18, 15, .28));
+      backdrop-filter: none;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 38px;
+      z-index: 2;
+      border: 1px solid rgba(183,150,90,.32);
+      border-radius: 44px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: min(900px, 100%);
+      max-width: 900px;
+      margin-top: -26px;
+      animation: fadeIn 1.2s ease both .25s;
+    }
+
+    .hero .eyebrow,
+    .hero h1 {
+      color: #fff8ef;
+      text-shadow: 0 8px 24px rgba(25, 18, 15, .45);
+    }
+
+    .hero .date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px auto 0;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: rgba(255,253,249,.90);
+      border: 1px solid rgba(183,150,90,.50);
+      color: #4a3a33;
+      font-weight: 600;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 26px rgba(25, 18, 15, .16);
+    }
+
+    .countdown-meta {
+      margin-top: 12px;
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .countdown-date {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(26px, 5vw, 38px);
+      line-height: 1;
+      letter-spacing: .4px;
+      color: #4a3a33;
+    }
+
+    .guest-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: clamp(10px, 1.8vw, 16px);
+
+      text-align: center;
+      width: min(620px, calc(100vw - 44px));
+      margin: 28px auto 0;
+      padding: clamp(26px, 5vw, 38px) clamp(24px, 5vw, 42px);
+
+      border-radius: 30px;
+      background: rgba(255, 253, 249, .84);
+      border: 1px solid rgba(183,150,90,.45);
+      box-shadow: 0 20px 56px rgba(63, 48, 43, 0.14);
+      backdrop-filter: blur(14px);
+
+      position: relative;
+
+      overflow: hidden;
+
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .guest-card::before,
+    .guest-card::after {
+      content: "❀";
+      position: absolute;
+      color: rgba(186, 115, 115, .22);
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .guest-card::before {
+      left: 18px;
+      top: 16px;
+    }
+
+    .guest-card::after {
+      right: 18px;
+      bottom: 14px;
+      transform: rotate(18deg);
+    }
+
+    .guest-label,
+    .guest-note {
+      display: block;
+      margin: 0;
+      text-align: center;
+
+      color: #6a5952;
+      font-size: clamp(12px, 2.9vw, 14px);
+      letter-spacing: clamp(1px, .45vw, 1.8px);
+      text-transform: uppercase;
+      line-height: 1.45;
+      font-weight: 700;
+      text-shadow: 0 1px 0 rgba(255, 253, 249, 0.45);
+    }
+
+    .guest-note {
+      margin-top: 4px;
+    }
+
+    .guest-card strong {
+      display: block;
+      margin: 0;
+      max-width: 100%;
+
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(32px, 7.4vw, 58px);
+      line-height: 1.05;
+      font-weight: 700;
+
+      color: #8f5050;
+      text-shadow: 0 6px 16px rgba(63, 48, 43, 0.14);
+
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+      clip-path: inset(0 0 0 0);
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -40px;
+      width: var(--size);
+      height: calc(var(--size) * 1.35);
+      background: var(--color);
+      border-radius: 70% 30% 70% 30%;
+      opacity: 0.98;
+      transform: rotate(var(--rotation));
+      animation: fallingConfetti var(--duration) linear infinite;
+      animation-delay: var(--delay);
+      filter: drop-shadow(0 6px 10px rgba(63, 48, 43, 0.12));
+    }
+
+    .confetti-piece::after {
+      content: "";
+      position: absolute;
+      inset: 18% 42%;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    section {
+      position: relative;
+      padding: 100px 22px;
+    }
+
+    header + section::before,
+    section + section::before,
+    section + footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(360px, calc(100% - 56px));
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(183, 150, 90, 0),
+        rgba(183, 150, 90, .35) 18%,
+        rgba(183, 150, 90, .78) 50%,
+        rgba(183, 150, 90, .35) 82%,
+        rgba(183, 150, 90, 0)
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    header + section::after,
+    section + section::after,
+    section + footer::after {
+      content: "❦";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -56%);
+      padding: 0 14px;
+      font-size: 20px;
+      line-height: 1;
+      color: rgba(183, 150, 90, .92);
+      background: rgba(255, 248, 239, .92);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .container {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(42px, 7vw, 74px);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .story-card {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 34px;
+      align-items: center;
+      background: var(--white);
+      border-radius: 36px;
+      padding: 34px;
+      border: 1px solid rgba(183,150,90,.28);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait {
+      min-height: 470px;
+      border-radius: 30px;
+      background:
+        linear-gradient(rgba(63,48,43,.05), rgba(63,48,43,.1)),
+        url("./assets/images/couple.jpg") center/cover;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait::after {
+      content: var(--portrait-caption);
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      padding: 20px;
+      background: rgba(255,253,249,.78);
+      border-radius: 22px;
+      font-family: "Bodoni Moda", serif;
+      font-size: 32px;
+      backdrop-filter: blur(12px);
+    }
+
+    .story-copy {
+      padding: 18px;
+    }
+
+    .story-copy h3 {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .story-copy p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .countdown {
+      background: var(--sage-soft);
+    }
+
+    .count-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .count-box,
+    .info-card,
+    .rsvp-card {
+      background: rgba(255,253,249,.82);
+      border: 1px solid rgba(183,150,90,.28);
+      border-radius: 28px;
+      box-shadow: 0 14px 40px rgba(63, 48, 43, 0.08);
+    }
+
+    .count-box {
+      text-align: center;
+      padding: 28px 12px;
+    }
+
+    .count-box strong {
+      display: block;
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: .9;
+    }
+
+    .count-box span {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .info-card {
+      padding: 30px;
+      text-align: center;
+      transition: .25s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #f7e5df;
+      color: var(--rose-dark);
+      font-size: 26px;
+    }
+
+    .info-card h3 {
+      font-family: "Bodoni Moda", serif;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+    }
+
+    .program-section {
+      background: #fbf6ff;
+    }
+
+    .program-heading {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .program-heading h2 {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(54px, 8vw, 96px);
+      font-weight: 600;
+      line-height: .9;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .program-heading p {
+      color: var(--muted);
+      font-size: clamp(18px, 2.3vw, 26px);
+      letter-spacing: 2px;
+    }
+
+    .program-timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 34px;
+      align-items: start;
+      width: min(900px, 100%);
+      margin: 0 auto;
+      padding: 34px 0 10px;
+    }
+
+    .program-line {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 114px;
+      height: 1px;
+      background: rgba(183, 150, 90, .28);
+      z-index: 0;
+    }
+
+    .program-item {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: grid;
+      justify-items: center;
+    }
+
+    .program-time {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 124px;
+      min-height: 46px;
+      padding: 10px 20px;
+      margin-bottom: 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f2a7b5, #d9788d);
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(217, 120, 141, .24);
+    }
+
+    .program-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 28px;
+      background: rgba(255, 253, 249, .92);
+      border: 4px solid rgba(242, 167, 181, .48);
+      color: #d9788d;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .program-item h3 {
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(26px, 3vw, 34px);
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .program-item p {
+      max-width: 190px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 320px;
+      gap: 18px;
+    }
+
+    .gallery-card {
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      background: var(--rose);
+      box-shadow: 0 14px 35px rgba(63, 48, 43, 0.10);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: .8s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .rsvp-section {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(242,201,201,.45), transparent 24%),
+        linear-gradient(180deg, var(--cream), #f7e6dc);
+    }
+
+    .rsvp-card {
+      width: min(680px, 100%);
+      margin: 0 auto;
+      padding: 36px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(183,150,90,.28);
+      background: #fffaf4;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font: inherit;
+      color: var(--ink);
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--rose-dark);
+      box-shadow: 0 0 0 4px rgba(186,115,115,.12);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .venue-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .accom-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .accom-map {
+      min-height: 370px;
+      height: 370px;
+      border-radius: 34px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(183,150,90,.28);
+      box-shadow: var(--shadow);
+    }
+
+    .accom-map iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 370px;
+      border: 0;
+    }
+
+    .map-frame {
+      min-height: 370px;
+      height: 370px;
+      border-radius: 34px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(183,150,90,.28);
+      box-shadow: var(--shadow);
+    }
+
+    .map-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 370px;
+      border: 0;
+    }
+
+    .venue-copy {
+      padding: 38px;
+      background: var(--white);
+      border-radius: 34px;
+      border: 1px solid rgba(183,150,90,.28);
+      box-shadow: var(--shadow);
+      min-height: 370px;
+      height: 370px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .venue-copy h3 {
+      font-family: "Bodoni Moda", serif;
+      font-size: 50px;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .venue-copy p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    footer {
+      position: relative;
+      padding: 70px 22px 100px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(242, 201, 201, .42), transparent 26%),
+        radial-gradient(circle at 84% 72%, rgba(238, 241, 231, .62), transparent 30%),
+        linear-gradient(180deg, #f8eee4, #f3e6da);
+      color: #4a3a33;
+      border-top: 1px solid rgba(183, 150, 90, .28);
+    }
+
+    footer h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(44px, 8vw, 86px);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      color: #6f5d56;
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: .8s ease;
+    }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(30px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fallingConfetti {
+      0% {
+        transform: translate3d(0, -40px, 0) rotate(var(--rotation));
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 0.98;
+      }
+
+      50% {
+        transform: translate3d(var(--sway), 50vh, 0) rotate(calc(var(--rotation) + 180deg));
+      }
+
+      100% {
+        transform: translate3d(calc(var(--sway) * -1), 110vh, 0) rotate(calc(var(--rotation) + 360deg));
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .confetti-layer {
+        display: none;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .program-timeline {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        width: min(520px, 100%);
+        margin: 0 auto;
+        padding-left: 0;
+      }
+
+      .program-line {
+        left: 50%;
+        right: auto;
+        top: 40px;
+        bottom: 0;
+        width: 1px;
+        height: auto;
+      }
+
+      .program-time {
+        margin-bottom: 18px;
+      }
+
+      .program-icon {
+        margin-bottom: 18px;
+      }
+
+      .program-item p {
+        max-width: 280px;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .lang-switcher {
+        top: 14px;
+        right: 14px;
+      }
+
+      .nav {
+        max-width: calc(100% - 22px);
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+
+      .story-card,
+      .venue-box,
+      .accom-card {
+        grid-template-columns: 1fr;
+      }
+
+      .details-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-auto-rows: 300px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 76px 18px;
+      }
+
+      .hero::before {
+        inset: 18px;
+        border-radius: 30px;
+      }
+
+      .gate-card {
+        min-height: auto;
+        padding: 36px 22px;
+      }
+
+      .gate-bouquet {
+        width: 200px;
+        height: 200px;
+      }
+
+      .gate-bouquet.top-left {
+        top: -26px;
+        left: -34px;
+      }
+
+      .gate-bouquet.bottom-right {
+        right: -34px;
+        bottom: -34px;
+      }
+
+      .couple-name {
+        white-space: normal;
+        flex-wrap: wrap;
+        gap: 0;
+        row-gap: 2px;
+      }
+
+      .couple-name .and {
+        width: 100%;
+      }
+
+      .gate-couple-name .and {
+        margin: 0 4px;
+      }
+
+      .count-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .rsvp-card,
+      .story-card,
+      .venue-copy {
+        padding: 24px;
+        border-radius: 26px;
+      }
+
+      .portrait,
+      .map-frame,
+      .accom-map {
+        min-height: 320px;
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="lang-switcher" role="group" aria-label="Language selector">
+    <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang-btn="ka" aria-pressed="false">KA</button>
+  </div>
+
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <div class="gate-bouquet top-left" aria-hidden="true">
+        <span class="wash one"></span>
+        <span class="wash two"></span>
+        <span class="stem one"></span>
+        <span class="stem two"></span>
+        <span class="leaf l1"></span>
+        <span class="leaf l2"></span>
+        <span class="leaf l3"></span>
+        <span class="leaf l4"></span>
+        <span class="blossom big">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span>
+          <span class="petal p4"></span><span class="petal p5"></span><span class="petal p6"></span>
+          <span class="core"></span><span class="stamen s1"></span><span class="stamen s2"></span><span class="stamen s3"></span>
+        </span>
+        <span class="blossom small">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span>
+          <span class="petal p4"></span><span class="petal p5"></span><span class="petal p6"></span>
+          <span class="core"></span><span class="stamen s1"></span><span class="stamen s2"></span><span class="stamen s3"></span>
+        </span>
+        <span class="bud b1"></span><span class="bud b2"></span><span class="bud b3"></span>
+      </div>
+
+      <div class="gate-bouquet bottom-right" aria-hidden="true">
+        <span class="wash one"></span>
+        <span class="wash two"></span>
+        <span class="stem one"></span>
+        <span class="stem two"></span>
+        <span class="leaf l1"></span>
+        <span class="leaf l2"></span>
+        <span class="leaf l3"></span>
+        <span class="leaf l4"></span>
+        <span class="blossom big">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span>
+          <span class="petal p4"></span><span class="petal p5"></span><span class="petal p6"></span>
+          <span class="core"></span><span class="stamen s1"></span><span class="stamen s2"></span><span class="stamen s3"></span>
+        </span>
+        <span class="blossom small">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span>
+          <span class="petal p4"></span><span class="petal p5"></span><span class="petal p6"></span>
+          <span class="core"></span><span class="stamen s1"></span><span class="stamen s2"></span><span class="stamen s3"></span>
+        </span>
+        <span class="bud b1"></span><span class="bud b2"></span><span class="bud b3"></span>
+      </div>
+      <p class="eyebrow" data-i18n="gate.invite">You are invited to</p>
+      <h1 class="gate-couple-name"><span data-i18n="names.giorgi">Giorgi</span> <span class="and">&</span> <span data-i18n="names.masho">Masho</span></h1>
+      <p class="gate-wedding-note" data-i18n="gate.wedding">Wedding</p>
+      <p class="gate-date" data-i18n="gate.datePlace">Saturday, 29 August 2026 · Nekresi Estate</p>
+      <button class="btn" id="openInvite"><span data-i18n="gate.openInvitation">Open Invitation</span> <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Invitation navigation" data-i18n-attr="aria-label:nav.ariaLabel">
+    <a href="#home" data-i18n="nav.home">Home</a>
+    <a href="#schedule" data-i18n="nav.schedule">Schedule</a>
+    <a href="#accommodation" data-i18n="nav.stay">Stay</a>
+  </nav>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <header class="hero" id="home">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="./assets/videos/video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1 class="couple-name"><span data-i18n="names.giorgi">Giorgi</span> <span class="and">&</span> <span data-i18n="names.masho">Masho</span></h1>
+      <div class="date-pill" data-i18n="hero.datePill">29.08.2026 • Nekresi Estate</div>
+      <div class="guest-card" id="guestCard" aria-live="polite">
+        <span class="guest-label" data-i18n="hero.inviteLabel">With joy, we invite</span>
+        <strong id="guestName">Our dear guest</strong>
+        <span class="guest-note" data-i18n="hero.inviteNote">to celebrate this special day with us</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="countdown" aria-label="Wedding countdown" data-i18n-attr="aria-label:countdown.ariaLabel">
+    <div class="container">
+      <div class="section-heading" data-animate>
+        <p class="eyebrow" data-i18n="countdown.eyebrow">Counting down</p>
+        <h2 data-i18n="countdown.title">Until we say yes</h2>
+        <div class="countdown-meta" aria-live="polite">
+          <p class="countdown-date" id="countdownDate">Saturday, 29 August 2026</p>
+        </div>
+      </div>
+      <div class="count-grid" data-animate>
+        <div class="count-box"><strong id="days">00</strong><span data-i18n="countdown.days">Days</span></div>
+        <div class="count-box"><strong id="hours">00</strong><span data-i18n="countdown.hours">Hours</span></div>
+        <div class="count-box"><strong id="minutes">00</strong><span data-i18n="countdown.minutes">Minutes</span></div>
+        <div class="count-box"><strong id="seconds">00</strong><span data-i18n="countdown.seconds">Seconds</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="program-section">
+    <div class="container">
+      <div class="program-heading" data-animate>
+        <h2 data-i18n="program.title">Day Program</h2>
+        <p data-i18n="program.subtitle">What we have prepared for you</p>
+      </div>
+
+      <div class="program-timeline" data-animate>
+        <div class="program-line" aria-hidden="true"></div>
+
+        <article class="program-item">
+          <div class="program-time">5:00 PM</div>
+          <div class="program-icon">☼</div>
+          <h3 data-i18n="program.item1.title">Arrival & Welcome</h3>
+          <p data-i18n="program.item1.desc">Welcome drinks, warm greetings and photos.</p>
+        </article>
+
+        <article class="program-item">
+          <div class="program-time">6:00 PM</div>
+          <div class="program-icon">♡</div>
+          <h3 data-i18n="program.item2.title">Wedding Ceremony</h3>
+          <p data-i18n="program.item2.desc">The ceremony and the beginning of our forever.</p>
+        </article>
+
+        <article class="program-item">
+          <div class="program-time">6:30 PM</div>
+          <div class="program-icon">♨</div>
+          <h3 data-i18n="program.item3.title">Dinner & Party</h3>
+          <p data-i18n="program.item3.desc">Dinner, music, dancing and celebration.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-heading" data-animate>
+        <p class="eyebrow" data-i18n="gallery.eyebrow">Moments</p>
+        <h2 data-i18n="gallery.title">Soft floral memories</h2>
+      </div>
+
+      <div class="gallery-grid" data-animate>
+        <div class="gallery-card"><img data-random-gallery src="./assets/images/nekresi%201.jpg" alt="Wedding floral moment"></div>
+        <div class="gallery-card"><img data-random-gallery src="./assets/images/nekresi%202.jpg" alt="Wedding floral moment"></div>
+        <div class="gallery-card"><img data-random-gallery src="./assets/images/nekresi%203.jpg" alt="Wedding floral moment"></div>
+        <div class="gallery-card"><img data-random-gallery src="./assets/images/nekresi%204.jpg" alt="Wedding floral moment"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="venue">
+    <div class="container venue-box" data-animate>
+      <div class="venue-copy">
+        <p class="eyebrow" data-i18n="venue.eyebrow">Location</p>
+        <h3 data-i18n="venue.title">Nekresi Estate</h3>
+        <p data-i18n="venue.desc">We will celebrate our wedding at Nekresi Estate. You can use the embedded map or open the location directly in Google Maps.</p>
+        <a class="btn light" href="https://maps.app.goo.gl/ymttCZMnvC4UbprG6" target="_blank" rel="noreferrer" data-i18n="venue.button">Open Nekresi Estate on Google Maps</a>
+      </div>
+      <div class="map-frame" aria-label="Map of Nekresi Estate" data-i18n-attr="aria-label:venue.mapAria">
+        <iframe
+          title="Nekresi Estate"
+          data-i18n-attr="title:venue.mapTitle"
+          src="https://maps.google.com/maps?q=41.9545876,45.7502554&z=17&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="accommodation">
+    <div class="container accom-card" data-animate>
+      <div class="venue-copy">
+        <p class="eyebrow" data-i18n="accommodation.eyebrow">Accommodation</p>
+        <h3 data-i18n="accommodation.title">Where to Stay</h3>
+        <p data-i18n="accommodation.desc">For guests who need accommodation, Hotel Burki is a convenient nearby option.</p>
+        <a class="btn light" href="https://maps.app.goo.gl/tzWAppjr1quZEQZA6" target="_blank" rel="noreferrer" data-i18n="accommodation.button">Open Hotel Burki on Google Maps</a>
+      </div>
+      <div class="accom-map" aria-label="Map of Hotel Burki" data-i18n-attr="aria-label:accommodation.mapAria">
+        <iframe
+          title="Hotel Burki"
+          data-i18n-attr="title:accommodation.mapTitle"
+          src="https://maps.google.com/maps?q=Hotel+Burki+Kakheti+Georgia&output=embed&z=14"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h2><span data-i18n="names.giorgi">Giorgi</span> & <span data-i18n="names.masho">Masho</span></h2>
+    <p data-i18n="footer.thankYou">Thank you for being part of our story.</p>
+  </footer>
+
+  <script>
+    // Edit all translatable text here.
+   const TRANSLATIONS = {
+  en: {
+    site: {
+      title: 'Giorgi & Masho Wedding Invitation',
+      description: 'Giorgi & Masho Wedding Invitation'
+    },
+    names: {
+      giorgi: 'Giorgi',
+      masho: 'Masho'
+    },
+    gate: {
+      invite: 'You are invited to',
+      wedding: 'Wedding',
+      datePlace: 'Saturday, 29 August 2026 · Nekresi Estate',
+      openInvitation: 'Open Invitation'
+    },
+    nav: {
+      ariaLabel: 'Invitation navigation',
+      home: 'Home',
+      schedule: 'Schedule',
+      stay: 'Stay'
+    },
+    hero: {
+      datePill: '29.08.2026 • Nekresi Estate',
+      inviteLabel: 'With joy, we invite',
+      inviteNote: 'to celebrate this special day with us',
+      defaultGuest: 'Our dear guest',
+      portraitCaption: 'Blooming together'
+    },
+    countdown: {
+      ariaLabel: 'Wedding countdown',
+      eyebrow: 'Counting down',
+      title: 'Until we say yes',
+      days: 'Days',
+      hours: 'Hours',
+      minutes: 'Minutes',
+      seconds: 'Seconds'
+    },
+    program: {
+      title: 'Day Program',
+      subtitle: 'What we have prepared for you',
+      item1: {
+        title: 'Arrival & Welcome',
+        desc: 'Welcome drinks, warm greetings and photos.'
+      },
+      item2: {
+        title: 'Wedding Ceremony',
+        desc: 'The ceremony and the beginning of our forever.'
+      },
+      item3: {
+        title: 'Dinner & Party',
+        desc: 'Dinner, music, dancing and celebration.'
+      }
+    },
+    gallery: {
+      eyebrow: 'Venue',
+      title: 'Nekresi Estate'
+    },
+    venue: {
+      eyebrow: 'Location',
+      title: 'Nekresi Estate',
+      desc: 'We will celebrate our wedding at Nekresi Estate. You can use the embedded map or open the location directly in Google Maps.',
+      button: 'Open Nekresi Estate on Google Maps',
+      mapAria: 'Map of Nekresi Estate',
+      mapTitle: 'Nekresi Estate'
+    },
+    accommodation: {
+      eyebrow: 'Accommodation',
+      title: 'Where to Stay',
+      desc: 'For guests, Hotel Burki is a nearby and comfortable option. It offers a special rate for our guests. For booking details, please contact: 599 112 143.',
+      button: 'Open Hotel Burki on Google Maps',
+      mapAria: 'Map of Hotel Burki',
+      mapTitle: 'Hotel Burki'
+    },
+    footer: {
+      thankYou: 'Thank you for being part of our story.'
+    }
+  },
+  ka: {
+    site: {
+      title: 'გიორგის და მაშოს - საქორწილო მოსაწვევი',
+      description: 'გიორგის და მაშოს - საქორწილო მოსაწვევი'
+    },
+    names: {
+      giorgi: 'გიორგი',
+      masho: 'მაშო'
+    },
+    gate: {
+      invite: 'გეპატიჟებით',
+      wedding: 'ქორწილში',
+      datePlace: 'შაბათი, 29 აგვისტო 2026 · ნეკრესის მამული',
+      openInvitation: 'მოსაწვევის გახსნა'
+    },
+    nav: {
+      ariaLabel: 'მოსაწვევის ნავიგაცია',
+      home: 'მთავარი',
+      schedule: 'პროგრამა',
+      stay: 'განთავსება'
+    },
+    hero: {
+      datePill: '29.08.2026 • ნეკრესის მამული',
+      inviteLabel: 'სიხარულით გეპატიჟებით',
+      inviteNote: 'ჩვენი განსაკუთრებული დღის აღსანიშნავად',
+      defaultGuest: 'ჩვენო ძვირფასო სტუმარო',
+      portraitCaption: 'ერთად აყვავებული'
+    },
+    countdown: {
+      ariaLabel: 'ქორწილამდე დარჩენილი დრო',
+      eyebrow: 'დარჩენილია',
+      title: 'სანამ დავქორწინდებით',
+      days: 'დღე',
+      hours: 'საათი',
+      minutes: 'წუთი',
+      seconds: 'წამი'
+    },
+    program: {
+      title: 'დღის განრიგი',
+      subtitle: 'თქვენ გლოდებათ',
+      item1: {
+        title: 'მოსვლა და დახვედრა',
+        desc: 'სასმელები, თბილი დახვედრა და ფოტოები.'
+      },
+      item2: {
+        title: 'საქორწილო ცერემონია',
+        desc: 'ცერემონია და ჩვენი ახალი ცხოვრების დასაწყისი.'
+      },
+      item3: {
+        title: 'ვახშამი და წვეულება',
+        desc: 'ვახშამი, მუსიკა, ცეკვა და ზეიმი.'
+      }
+    },
+    gallery: {
+      eyebrow: 'ღონისძიების ადგილი',
+      title: 'ნეკრესის მამული'
+    },
+    venue: {
+      eyebrow: 'ლოკაცია',
+      title: 'ნეკრესის მამული',
+      desc: 'ჩვენს ქორწილს ნეკრესის მამულში აღვნიშნავთ. შეგიძლიათ გამოიყენოთ ჩაშენებული რუკა ან გახსნათ ლოკაცია Google Maps-ში.',
+      button: 'ნეკრესის მამულის გახსნა Google Maps-ში',
+      mapAria: 'ნეკრესის მამულის რუკა',
+      mapTitle: 'ნეკრესის მამული'
+    },
+    accommodation: {
+      eyebrow: 'განთავსება',
+      title: 'სად დარჩეთ',
+      desc: 'სტუმრებისთვის, სასტუმრო ბურკი ახლო და კომფორტული ვარიანტია. ჩვენს სტუმრებს სთავაზობს სპეციალურ ფასს, ჯავშნის დეტალებისთვის დაუკავშირდით (599112143)',
+      button: 'Hotel Burki-ის გახსნა Google Maps-ში',
+      mapAria: 'Hotel Burki-ის რუკა',
+      mapTitle: 'Hotel Burki'
+    },
+    footer: {
+      thankYou: 'მადლობა, რომ ჩვენი ისტორიის ნაწილი ხართ.'
+    }
+  }
+};
+
+    function getTranslation(lang, path) {
+      return path.split('.').reduce((value, segment) => {
+        if (value && Object.prototype.hasOwnProperty.call(value, segment)) {
+          return value[segment];
+        }
+        return undefined;
+      }, TRANSLATIONS[lang]);
+    }
+
+    function applyTextTranslations(lang) {
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        const value = getTranslation(lang, key);
+        if (typeof value === 'string') {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-attr]').forEach((element) => {
+        const mapping = element.getAttribute('data-i18n-attr');
+        if (!mapping) return;
+
+        mapping.split(';').forEach((pair) => {
+          const [attributeName, key] = pair.split(':').map((part) => part && part.trim());
+          if (!attributeName || !key) return;
+
+          const value = getTranslation(lang, key);
+          if (typeof value === 'string') {
+            element.setAttribute(attributeName, value);
+          }
+        });
+      });
+    }
+
+    function updateDocumentMeta(lang) {
+      const title = getTranslation(lang, 'site.title');
+      const description = getTranslation(lang, 'site.description');
+      const descriptionTag = document.querySelector('meta[name="description"]');
+
+      if (title) {
+        document.title = title;
+      }
+
+      if (description && descriptionTag) {
+        descriptionTag.setAttribute('content', description);
+      }
+
+      document.documentElement.lang = lang;
+
+      const portraitCaption = getTranslation(lang, 'hero.portraitCaption');
+      if (portraitCaption) {
+        document.documentElement.style.setProperty('--portrait-caption', `"${portraitCaption}"`);
+      }
+    }
+
+    function updateLanguageButtons(lang) {
+      document.querySelectorAll('[data-lang-btn]').forEach((button) => {
+        const isActive = button.getAttribute('data-lang-btn') === lang;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+    }
+
+    const openButton = document.getElementById('openInvite');
+    openButton.addEventListener('click', () => {
+      document.body.classList.add('opened');
+      setTimeout(() => document.getElementById('home').scrollIntoView(), 400);
+    });
+
+    const query = new URLSearchParams(window.location.search);
+    const hashQueryString = window.location.hash.includes('?')
+      ? window.location.hash.slice(window.location.hash.indexOf('?') + 1)
+      : '';
+    const hashQuery = new URLSearchParams(hashQueryString);
+
+    function getParam(paramName) {
+      return query.get(paramName) || hashQuery.get(paramName);
+    }
+
+    const guest = getParam('guest') || getParam('name') || getParam('to');
+    const guestNameElement = document.getElementById('guestName');
+
+    // URLSearchParams returns decoded strings, so avoid double decoding.
+    const normalizedGuestName = guest && guest.trim() ? guest.trim() : '';
+
+    function updateGuestName(lang) {
+      if (normalizedGuestName) {
+        guestNameElement.textContent = normalizedGuestName;
+        return;
+      }
+
+      const defaultGuest = getTranslation(lang, 'hero.defaultGuest');
+      guestNameElement.textContent = defaultGuest || 'Our dear guest';
+    }
+
+    function createHeroConfetti() {
+      const layer = document.getElementById("confettiLayer");
+      if (!layer) return;
+
+      const colors = [
+        "rgba(196, 140, 232, 0.96)",
+        "rgba(150, 102, 210, 0.94)",
+        "rgba(242, 167, 181, 0.96)",
+        "rgba(217, 120, 141, 0.94)",
+        "rgba(255, 223, 120, 0.96)",
+        "rgba(244, 196, 77, 0.95)",
+        "rgba(232, 194, 101, 0.95)",
+        "rgba(209, 163, 58, 0.94)",
+        "rgba(224, 98, 98, 0.96)",
+        "rgba(188, 54, 54, 0.94)"
+      ];
+
+      const amount = window.innerWidth < 640 ? 16 : 28;
+
+      layer.innerHTML = "";
+
+      for (let i = 0; i < amount; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+
+        const size = 5 + Math.random() * 8;
+        const left = Math.random() * 100;
+        const delay = Math.random() * -10;
+        const duration = 8 + Math.random() * 7;
+        const rotation = Math.random() * 360;
+        const sway = (20 + Math.random() * 60) * (Math.random() > 0.5 ? 1 : -1);
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.left = `${left}%`;
+        piece.style.setProperty("--size", `${size}px`);
+        piece.style.setProperty("--delay", `${delay}s`);
+        piece.style.setProperty("--duration", `${duration}s`);
+        piece.style.setProperty("--rotation", `${rotation}deg`);
+        piece.style.setProperty("--sway", `${sway}px`);
+        piece.style.setProperty("--color", color);
+
+        layer.appendChild(piece);
+      }
+    }
+
+    createHeroConfetti();
+
+    window.addEventListener("resize", () => {
+      clearTimeout(window.__confettiResizeTimer);
+      window.__confettiResizeTimer = setTimeout(createHeroConfetti, 250);
+    });
+
+    function populateGalleryImages() {
+      const galleryPool = [
+        "./assets/images/nekresi 1.jpg",
+        "./assets/images/nekresi 2.jpg",
+        "./assets/images/nekresi 3.jpg",
+        "./assets/images/nekresi 4.jpg"
+      ];
+
+      const galleryImages = Array.from(document.querySelectorAll("img[data-random-gallery]"));
+      if (!galleryImages.length || !galleryPool.length) return;
+
+      const shuffledPool = [...galleryPool].sort(() => Math.random() - 0.5);
+
+      galleryImages.forEach((img, index) => {
+        const imagePath = shuffledPool[index % shuffledPool.length];
+        img.src = encodeURI(imagePath);
+      });
+    }
+
+    populateGalleryImages();
+
+    const weddingDateISO = '2026-08-29T18:00:00+04:00';
+    const weddingDate = new Date(weddingDateISO).getTime();
+
+    function updateLocalizedCountdownDate(lang) {
+      const locale = lang === 'ka' ? 'ka-GE' : 'en-US';
+      const formattedDate = new Intl.DateTimeFormat(locale, {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }).format(new Date(weddingDateISO));
+
+      const countdownDateElement = document.getElementById('countdownDate');
+      if (countdownDateElement) {
+        countdownDateElement.textContent = formattedDate;
+      }
+    }
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = Math.max(weddingDate - now, 0);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    function getInitialLanguage() {
+      const langFromQuery = getParam('lang');
+      if (langFromQuery && TRANSLATIONS[langFromQuery]) {
+        return langFromQuery;
+      }
+
+      const langFromStorage = localStorage.getItem('inviteLang');
+      if (langFromStorage && TRANSLATIONS[langFromStorage]) {
+        return langFromStorage;
+      }
+
+      return navigator.language && navigator.language.toLowerCase().startsWith('ka') ? 'ka' : 'en';
+    }
+
+    function setLanguage(lang) {
+      if (!TRANSLATIONS[lang]) return;
+
+      applyTextTranslations(lang);
+      updateDocumentMeta(lang);
+      updateGuestName(lang);
+      updateLocalizedCountdownDate(lang);
+      updateLanguageButtons(lang);
+      localStorage.setItem('inviteLang', lang);
+    }
+
+    document.querySelectorAll('[data-lang-btn]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedLang = button.getAttribute('data-lang-btn');
+        setLanguage(selectedLang);
+      });
+    });
+
+    setLanguage(getInitialLanguage());
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

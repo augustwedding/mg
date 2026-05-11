@@ -2083,7 +2083,20 @@
     const guestNameElement = document.getElementById('guestName');
 
     // URLSearchParams returns decoded strings, so avoid double decoding.
-    const normalizedGuestName = guest && guest.trim() ? guest.trim() : '';
+    const rawGuest = guest && guest.trim() ? guest.trim() : '';
+
+    // If integer, will be resolved from guests.json; otherwise use as-is
+    let normalizedGuestName = (rawGuest && /^\d+$/.test(rawGuest)) ? '' : rawGuest;
+
+    if (rawGuest && /^\d+$/.test(rawGuest)) {
+      fetch('./assets/guests.json')
+        .then(r => r.json())
+        .then(guests => {
+          normalizedGuestName = guests[rawGuest] || '';
+          updateGuestName(localStorage.getItem('inviteLang') || 'ka');
+        })
+        .catch(() => {});
+    }
 
     function updateGuestName(lang) {
       if (normalizedGuestName) {

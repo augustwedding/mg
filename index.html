@@ -1825,7 +1825,7 @@
       },
       item3: {
         title: 'Dinner & Party',
-        desc: 'Dinner, music, dancing and celebration.'
+        desc: 'Dinner, music and dancing.'
       }
     },
     gallery: {
@@ -1903,7 +1903,7 @@
       },
       item3: {
         title: 'ვახშამი და წვეულება',
-        desc: 'ვახშამი, მუსიკა, ცეკვა და ზეიმი.'
+        desc: 'ვახშამი, მუსიკა და ცეკვა.'
       }
     },
     gallery: {
@@ -1921,7 +1921,7 @@
     accommodation: {
       eyebrow: 'განთავსება',
       title: 'სად დარჩეთ',
-      desc: 'სტუმრებისთვის, სასტუმრო ბურკი ახლო და კომფორტული ვარიანტია. ჩვენს სტუმრებს სთავაზობს სპეციალურ ფასს, ჯავშნის დეტალებისთვის დაუკავშირდით (+995 511 44 11 51)',
+      desc: 'სტუმრებისთვის, სასტუმრო ბურკი ახლო და კომფორტული ვარიანტია. ჩვენს სტუმრებს სთავაზობს სპეციალურ ფასს, ჯავშნის დეტალებისთვის დაუკავშირდით (<strong>+995 511 44 11 51</strong>)',
       button: 'Hotel Burki-ის გახსნა Google Maps-ში',
       mapAria: 'Hotel Burki-ის რუკა',
       mapTitle: 'Hotel Burki'
@@ -1946,7 +1946,7 @@
         const key = element.getAttribute('data-i18n');
         const value = getTranslation(lang, key);
         if (typeof value === 'string') {
-          element.textContent = value;
+          element.innerHTML = value;
         }
       });
 
@@ -2088,20 +2088,32 @@
 
     // If integer, will be resolved from guests.json; otherwise use as-is
     let normalizedGuestName = (rawGuest && /^\d+$/.test(rawGuest)) ? '' : rawGuest;
+    let guestData = null; // {en, ka} when resolved from guests.json
 
     if (rawGuest && /^\d+$/.test(rawGuest)) {
       fetch('./assets/guests.json')
         .then(r => r.json())
         .then(guests => {
-          normalizedGuestName = guests[rawGuest] || '';
+          const entry = guests[rawGuest];
+          if (entry && typeof entry === 'object') {
+            guestData = entry;
+          } else {
+            normalizedGuestName = entry || '';
+          }
           updateGuestName(localStorage.getItem('inviteLang') || 'ka');
         })
         .catch(() => {});
     }
 
     function updateGuestName(lang) {
-      if (normalizedGuestName) {
-        guestNameElement.textContent = normalizedGuestName;
+      let name = '';
+      if (guestData) {
+        name = guestData[lang] || guestData['ka'] || guestData['en'] || '';
+      } else if (normalizedGuestName) {
+        name = normalizedGuestName;
+      }
+      if (name) {
+        guestNameElement.textContent = name;
         return;
       }
 

@@ -1843,7 +1843,7 @@
     accommodation: {
       eyebrow: 'Accommodation',
       title: 'Where to Stay',
-      desc: 'For guests, Hotel Burki is a nearby and comfortable option. It offers a special rate for our guests. For booking details, please contact: 599 112 143.',
+      desc: 'For guests, Hotel Burki is a nearby and comfortable option. It offers a special rate for our guests. For booking details, please contact: <strong>+995 511 44 11 51</strong>.',
       button: 'Open Hotel Burki on Google Maps',
       mapAria: 'Map of Hotel Burki',
       mapTitle: 'Hotel Burki'
@@ -2100,7 +2100,8 @@
           } else {
             normalizedGuestName = entry || '';
           }
-          updateGuestName(localStorage.getItem('inviteLang') || 'ka');
+          const lang = getParam('lang') || localStorage.getItem('inviteLang') || 'ka';
+          updateGuestName(lang);
         })
         .catch(() => {});
     }
